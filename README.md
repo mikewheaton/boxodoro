@@ -6,4 +6,4 @@ It starts automatically and snaps to the hour. The alarm sounds at 5 minutes, 30
 
 ## Acknowledgements
 
-Chime sound comes from [SoundBible](https://soundbible.com/) and this project makes use of the [reaact-countdown-now](https://github.com/kristinbaumann/react-countdown) and [buzz](https://github.com/jaysalvat/buzz) packages.
+Chime sound comes from [SoundBible](https://soundbible.com/) and this project makes use of the [react-countdown-now](https://github.com/kristinbaumann/react-countdown) and [buzz](https://github.com/jaysalvat/buzz) packages.
