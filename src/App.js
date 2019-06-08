@@ -6,7 +6,7 @@ import Timer from "./Timer";
 
 class App extends React.Component {
   chime = new buzz.sound(
-    "http://soundbible.com/mp3/Electronic_Chime-KevanGC-495939803.mp3"
+    "https://soundbible.com/mp3/Electronic_Chime-KevanGC-495939803.mp3"
   );
 
   state = {
