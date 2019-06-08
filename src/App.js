@@ -1,37 +1,46 @@
 import React from "react";
 import Timer from "./Timer";
+import buzz from "buzz";
 
 class App extends React.Component {
-  audioPlayer = React.createRef();
+  chime = new buzz.sound(
+    "http://soundbible.com/mp3/Electronic_Chime-KevanGC-495939803.mp3"
+  );
 
   state = {
-    key: 1
+    count: 0,
+    isMuted: true
   };
 
+  componentDidMount() {
+    this.state.isMuted && this.chime.mute();
+  }
+
   render() {
-    const { key } = this.state;
+    const { count, isMuted } = this.state;
 
     return (
       <div className="App">
-        <Timer onComplete={this.handleComplete} key={key} />
-        <audio
-          src="https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/bell_ring.ogg"
-          ref={this.audioPlayer}
-        />
+        <Timer onComplete={this.handleComplete} key={count} />
+        <button onClick={this.toggleMute}>{isMuted ? "Unmute" : "Mute"}</button>
       </div>
     );
   }
 
-  handleComplete = () => {
-    // Play a sound.
-    this.audioPlayer.current.play().catch(error => {
-      console.log("Error:", error);
-      alert("Time's up! (Audio isn't supported by your browser.)");
+  toggleMute = () => {
+    this.chime.toggleMute();
+    this.setState({
+      isMuted: !this.state.isMuted
     });
+  };
 
-    // Increment the key forces a re-render, which will
-    // start the timer up again for the next interval.
-    this.setState({ key: this.state.key + 1 });
+  handleComplete = () => {
+    if (!this.state.isMuted) {
+      this.chime.play();
+    }
+
+    // Increment the timer's key so that it starts the next countdown.
+    this.setState({ count: this.state.count + 1 });
   };
 }
 
