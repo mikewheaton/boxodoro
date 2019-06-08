@@ -1,6 +1,8 @@
-import React from "react";
-import Timer from "./Timer";
 import buzz from "buzz";
+import React from "react";
+import { MdVolumeOff, MdVolumeUp } from "react-icons/md";
+import "./App.css";
+import Timer from "./Timer";
 
 class App extends React.Component {
   chime = new buzz.sound(
@@ -22,7 +24,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <Timer onComplete={this.handleComplete} key={count} />
-        <button onClick={this.toggleMute}>{isMuted ? "Unmute" : "Mute"}</button>
+        <button
+          className={`App-toggleMuteButton ${isMuted && "is-muted"}`}
+          onClick={this.toggleMute}
+        >
+          {isMuted ? <MdVolumeOff /> : <MdVolumeUp />}
+        </button>
       </div>
     );
   }

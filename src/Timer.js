@@ -1,5 +1,6 @@
 import React from "react";
 import Countdown from "react-countdown-now";
+import "./Timer.css";
 
 const Timer = ({ onComplete }) => {
   // Get the current time and minutes.
@@ -7,7 +8,7 @@ const Timer = ({ onComplete }) => {
   const minute = currentTime.getMinutes();
 
   // Determine which minute we're counting down to.
-  var stops = [25, 30, 55, 60];
+  const stops = [25, 30, 55, 60];
   let nextStop;
   for (let stop of stops) {
     if (minute < stop) {
@@ -22,22 +23,18 @@ const Timer = ({ onComplete }) => {
   countdownTime.setSeconds(0);
 
   return (
-    <Countdown
-      date={countdownTime}
-      onComplete={onComplete}
-      intervalDelay={500}
-      renderer={({ minutes, seconds, milliseconds }) => (
-        <div
-          style={{
-            fontSize: 200,
-            fontFamily: "Space Mono, monospace",
-            textAlign: "center"
-          }}
-        >
-          {minutes}:{("0" + seconds).slice(-2)}
-        </div>
-      )}
-    />
+    <div className="Timer">
+      <Countdown
+        date={countdownTime}
+        onComplete={onComplete}
+        intervalDelay={500}
+        renderer={({ minutes, seconds, milliseconds }) => (
+          <div className="Timer-clock">
+            {minutes}:{("0" + seconds).slice(-2)}
+          </div>
+        )}
+      />
+    </div>
   );
 };
 

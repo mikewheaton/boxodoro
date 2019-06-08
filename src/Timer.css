@@ -1,0 +1,12 @@
+.Timer {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.Timer-clock {
+  color: #eeeeee;
+  font-family: "Space Mono", monospace;
+  font-size: 28vw;
+}

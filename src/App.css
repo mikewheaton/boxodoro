@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Space+Mono&display=swap");
+
+.App-toggleMuteButton {
+  background: none;
+  border: none;
+  color: #bbbbbb;
+  cursor: pointer;
+  display: flex;
+  font-size: calc(1rem + 5vw);
+  padding: 2vw;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.App-toggleMuteButton:hover {
+  opacity: 1;
+}
+
+.App-toggleMuteButton.is-muted {
+  color: #d65a31;
+}
