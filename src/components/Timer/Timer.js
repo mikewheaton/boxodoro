@@ -65,7 +65,9 @@ const Timer = ({ onComplete }) => {
           </div>
         )}
       />
-      <Progress progress={progress} />
+      <div className="Timer-progressWrapper">
+        <Progress progress={progress} />
+      </div>
     </div>
   );
 };
