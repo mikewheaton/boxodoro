@@ -1,6 +1,6 @@
 import React from "react";
 import Countdown from "react-countdown-now";
-import Number from "./components/Number/Number";
+import Number from "../Number/Number";
 import "./Timer.css";
 
 const Timer = ({ onComplete }) => {

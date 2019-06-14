@@ -1,8 +1,8 @@
 import buzz from "buzz";
 import React from "react";
 import { MdVolumeOff, MdVolumeUp } from "react-icons/md";
+import Timer from "../Timer/Timer";
 import "./App.css";
-import Timer from "./Timer";
 
 class App extends React.Component {
   chime = new buzz.sound(
