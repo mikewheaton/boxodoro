@@ -1,16 +1,28 @@
 .Timer {
   align-items: center;
   display: flex;
+  flex-direction: column;
   height: 100vh;
-  justify-content: center;
 }
 
 .Timer-clock {
+  align-items: center;
   color: #eee;
+  display: flex;
+  flex-grow: 1;
   font-family: "Space Mono", monospace;
   font-size: 28vw;
+  overflow: hidden;
 }
 
 .Timer-clock-colon {
   margin: 0 -2vw;
+}
+
+.Timer-progressWrapper {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 2vw;
+  min-height: 12px;
+  width: 100vw;
 }

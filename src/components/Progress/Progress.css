@@ -1,0 +1,11 @@
+.Progress {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.Progress-fill {
+  background: #eee;
+  border-radius: 0 100vw 100vw 0;
+  transition: width 1s linear;
+}
