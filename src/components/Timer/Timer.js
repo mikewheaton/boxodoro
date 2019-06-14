@@ -1,5 +1,6 @@
 import React from "react";
 import Countdown from "react-countdown-now";
+import Number from "../Number/Number";
 import "./Timer.css";
 
 const Timer = ({ onComplete }) => {
@@ -30,7 +31,9 @@ const Timer = ({ onComplete }) => {
         intervalDelay={500}
         renderer={({ minutes, seconds, milliseconds }) => (
           <div className="Timer-clock">
-            {minutes}:{("0" + seconds).slice(-2)}
+            <Number value={minutes} deemphasizeZeros={true} />
+            <span className="Timer-clock-colon">:</span>
+            <Number value={seconds} />
           </div>
         )}
       />
