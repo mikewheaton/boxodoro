@@ -22,7 +22,7 @@ const stops = [
   },
   {
     duration: 5,
-    endMinute: 65,
+    endMinute: 60,
     type: "break"
   }
 ];
