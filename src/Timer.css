@@ -6,7 +6,12 @@
 }
 
 .Timer-clock {
-  color: #eeeeee;
+  color: #eee;
   font-family: "Space Mono", monospace;
   font-size: 28vw;
+}
+
+.Timer-clock-colon {
+  margin: 0 -2vw;
+  opacity: 0.8;
 }
