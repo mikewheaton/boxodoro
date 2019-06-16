@@ -1,13 +1,28 @@
-@import url("https://fonts.googleapis.com/css?family=Space+Mono&display=swap");
+.App {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.App-progress {
+  bottom: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 0.5rem;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
 
 .App-toggleMuteButton {
   background: none;
   border: none;
-  color: #bbbbbb;
+  color: var(--mediumGray);
   cursor: pointer;
   display: flex;
-  font-size: calc(1rem + 5vw);
-  padding: 2vw;
+  font-size: 4rem;
+  padding: 1rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -19,5 +34,5 @@
 }
 
 .App-toggleMuteButton.is-muted {
-  color: #d65a31;
+  color: var(--red);
 }

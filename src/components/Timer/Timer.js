@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Countdown from "react-countdown-now";
 import Number from "../Number/Number";
-import Progress from "../Progress/Progress";
 import "./Timer.css";
 
-const stops = [
+const timers = [
   {
     duration: 25,
     endMinute: 25,
-    type: "work"
+    type: "focus"
   },
   {
     duration: 5,
@@ -18,7 +17,7 @@ const stops = [
   {
     duration: 25,
     endMinute: 55,
-    type: "work"
+    type: "focus"
   },
   {
     duration: 5,
@@ -27,37 +26,31 @@ const stops = [
   }
 ];
 
-const Timer = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
+const Timer = ({ onComplete, onTick }) => {
   const currentTime = new Date();
   const minute = currentTime.getMinutes();
 
   // Determine which minute we're counting down to.
-  let nextStop;
-  for (let stop of stops) {
-    if (minute < stop.endMinute) {
-      nextStop = stop;
+  let timer;
+  for (const t of timers) {
+    if (minute < t.endMinute) {
+      timer = t;
       break;
     }
   }
 
   // Create a time for the timer to count down to.
   const countdownTime = new Date(currentTime.getTime());
-  countdownTime.setMinutes(nextStop.endMinute);
+  countdownTime.setMinutes(timer.endMinute);
   countdownTime.setSeconds(0);
-
-  // Update the progress bar.
-  const updateProgress = timerInfo => {
-    setProgress(1 - timerInfo.total / (nextStop.duration * 60 * 1000));
-  };
 
   return (
     <div className="Timer">
       <Countdown
         date={countdownTime}
-        onComplete={onComplete}
-        onTick={timerInfo => updateProgress(timerInfo)}
-        renderer={({ minutes, seconds, milliseconds }) => (
+        onComplete={() => onComplete(timer.type)}
+        onTick={timerInfo => onTick(timerInfo, timer)}
+        renderer={({ minutes, seconds }) => (
           <div className="Timer-clock">
             <Number value={minutes} deemphasizeZeros={true} />
             <span className="Timer-clock-colon">:</span>
@@ -65,8 +58,8 @@ const Timer = ({ onComplete }) => {
           </div>
         )}
       />
-      <div className="Timer-progressWrapper">
-        <Progress progress={progress} />
+      <div className="Timer-label">
+        {timer.type === "focus" ? "focus" : "take a break"}
       </div>
     </div>
   );
