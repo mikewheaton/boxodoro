@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Countdown from "react-countdown-now";
 import Number from "../Number/Number";
-import Progress from "../Progress/Progress";
 import "./Timer.css";
 
 const stops = [
@@ -27,14 +26,13 @@ const stops = [
   }
 ];
 
-const Timer = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
+const Timer = ({ onComplete, onTick }) => {
   const currentTime = new Date();
   const minute = currentTime.getMinutes();
 
   // Determine which minute we're counting down to.
   let nextStop;
-  for (let stop of stops) {
+  for (const stop of stops) {
     if (minute < stop.endMinute) {
       nextStop = stop;
       break;
@@ -46,18 +44,13 @@ const Timer = ({ onComplete }) => {
   countdownTime.setMinutes(nextStop.endMinute);
   countdownTime.setSeconds(0);
 
-  // Update the progress bar.
-  const updateProgress = timerInfo => {
-    setProgress(1 - timerInfo.total / (nextStop.duration * 60 * 1000));
-  };
-
   return (
     <div className="Timer">
       <Countdown
         date={countdownTime}
         onComplete={onComplete}
-        onTick={timerInfo => updateProgress(timerInfo)}
-        renderer={({ minutes, seconds, milliseconds }) => (
+        onTick={timerInfo => onTick(timerInfo, nextStop)}
+        renderer={({ minutes, seconds }) => (
           <div className="Timer-clock">
             <Number value={minutes} deemphasizeZeros={true} />
             <span className="Timer-clock-colon">:</span>
@@ -65,9 +58,6 @@ const Timer = ({ onComplete }) => {
           </div>
         )}
       />
-      <div className="Timer-progressWrapper">
-        <Progress progress={progress} />
-      </div>
     </div>
   );
 };

@@ -7,6 +7,16 @@
   justify-content: center;
 }
 
+.App-progressWrapper {
+  bottom: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 0.5rem;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
 .App-toggleMuteButton {
   background: none;
   border: none;
