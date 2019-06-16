@@ -1,7 +1,19 @@
+:root {
+  --darkBlue: #222831;
+  --lightGray: #eeeeee;
+  --mediumGray: #bbbbbb;
+  --red: #d65a31;
+  --darkGray: #141414;
+}
+
+html {
+  font-size: 2vw;
+}
+
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  background-color: #222831;
+  background-color: var(--darkBlue);
   margin: 0;
   padding: 0;
 }
