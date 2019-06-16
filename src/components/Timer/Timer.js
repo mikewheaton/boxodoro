@@ -3,11 +3,11 @@ import Countdown from "react-countdown-now";
 import Number from "../Number/Number";
 import "./Timer.css";
 
-const stops = [
+const timers = [
   {
     duration: 25,
     endMinute: 25,
-    type: "work"
+    type: "focus"
   },
   {
     duration: 5,
@@ -17,7 +17,7 @@ const stops = [
   {
     duration: 25,
     endMinute: 55,
-    type: "work"
+    type: "focus"
   },
   {
     duration: 5,
@@ -31,25 +31,25 @@ const Timer = ({ onComplete, onTick }) => {
   const minute = currentTime.getMinutes();
 
   // Determine which minute we're counting down to.
-  let nextStop;
-  for (const stop of stops) {
-    if (minute < stop.endMinute) {
-      nextStop = stop;
+  let timer;
+  for (const t of timers) {
+    if (minute < t.endMinute) {
+      timer = t;
       break;
     }
   }
 
   // Create a time for the timer to count down to.
   const countdownTime = new Date(currentTime.getTime());
-  countdownTime.setMinutes(nextStop.endMinute);
+  countdownTime.setMinutes(timer.endMinute);
   countdownTime.setSeconds(0);
 
   return (
     <div className="Timer">
       <Countdown
         date={countdownTime}
-        onComplete={onComplete}
-        onTick={timerInfo => onTick(timerInfo, nextStop)}
+        onComplete={() => onComplete(timer.type)}
+        onTick={timerInfo => onTick(timerInfo, timer)}
         renderer={({ minutes, seconds }) => (
           <div className="Timer-clock">
             <Number value={minutes} deemphasizeZeros={true} />
@@ -58,6 +58,9 @@ const Timer = ({ onComplete, onTick }) => {
           </div>
         )}
       />
+      <div className="Timer-label">
+        {timer.type === "focus" ? "focus" : "take a break"}
+      </div>
     </div>
   );
 };

@@ -6,9 +6,10 @@ import Timer from "../Timer/Timer";
 import "./App.css";
 
 const App = () => {
-  const [completed, setCompleted] = useState(0);
+  const [focusCount, setFocusCount] = useState(0);
   const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [breakCount, setBreakCount] = useState(0);
 
   const chime = new buzz.sound(
     "https://soundbible.com/mp3/Electronic_Chime-KevanGC-495939803.mp3"
@@ -20,13 +21,14 @@ const App = () => {
     setMuted(!muted);
   };
 
-  const handleComplete = () => {
+  const handleComplete = timerType => {
     if (!muted) {
       this.chime.play();
     }
 
-    // Increment the timer's key so that it starts the next countdown.
-    setCompleted(completed + 1);
+    timerType === "focus"
+      ? setFocusCount(focusCount + 1)
+      : setBreakCount(breakCount + 1);
   };
 
   const handleTick = (timerInfo, nextStop) => {
@@ -35,8 +37,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Timer onTick={handleTick} onComplete={handleComplete} key={completed} />
-      <div className="App-progressWrapper">
+      <Timer
+        onTick={handleTick}
+        onComplete={handleComplete}
+        key={`${focusCount + breakCount}$`}
+      />
+      <div className="App-progress">
         <Progress progress={progress} />
       </div>
       <button
