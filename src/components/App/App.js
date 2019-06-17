@@ -17,13 +17,13 @@ const App = () => {
   chime.mute();
 
   const toggleMute = () => {
-    this.chime.toggleMute();
+    chime.toggleMute();
     setMuted(!muted);
   };
 
   const handleComplete = timerType => {
     if (!muted) {
-      this.chime.play();
+      chime.play();
     }
 
     timerType === "focus"
