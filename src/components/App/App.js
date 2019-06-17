@@ -5,16 +5,16 @@ import Progress from "../Progress/Progress";
 import Timer from "../Timer/Timer";
 import "./App.css";
 
+const chime = new buzz.sound(
+  "https://soundbible.com/mp3/Electronic_Chime-KevanGC-495939803.mp3"
+);
+chime.mute();
+
 const App = () => {
   const [focusCount, setFocusCount] = useState(0);
   const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const [breakCount, setBreakCount] = useState(0);
-
-  const chime = new buzz.sound(
-    "https://soundbible.com/mp3/Electronic_Chime-KevanGC-495939803.mp3"
-  );
-  chime.mute();
 
   const toggleMute = () => {
     chime.toggleMute();
